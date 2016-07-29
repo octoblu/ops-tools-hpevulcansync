@@ -3,7 +3,7 @@
 VARGS=$@
 
 describe_aws_load_balancer_instances() {
-  aws elb describe-load-balancers \
+  aws elb describe-load-balancers --region='us-east-1' \
     --load-balancer-names vulcand-hpe-internal \
   | jq '.LoadBalancerDescriptions[0].Instances'
 }
@@ -25,7 +25,7 @@ get_random_instance_id(){
 
 get_ip_for_instance_id(){
   local instance_id="$1"
-  aws ec2 describe-instances --instance-ids "$instance_id" \
+  aws ec2 describe-instances --region='us-east-1' --instance-ids "$instance_id" \
   | jq --raw-output '.Reservations[0].Instances[0].PublicIpAddress'
 }
 
