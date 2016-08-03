@@ -40,7 +40,7 @@ get_hpe_ip(){
 establish_ssh_tunnel(){
   local ip_address="$1"
 
-  ssh -t -t -L 62444:localhost:8182 "core@$ip_address" &> /dev/null
+  ssh -t -t -L 62444:internal-vulcand-hpe-internal-1082115942.us-east-1.elb.amazonaws.com:8182 "core@$ip_address" &> /dev/null
 }
 
 kill_ssh_tunnel_job() {
